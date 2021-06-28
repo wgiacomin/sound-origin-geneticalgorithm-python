@@ -1,6 +1,8 @@
 import random
 
 import numpy as np
+import pandas as pd
+import plotly.graph_objects as go
 from geneticalgorithm import geneticalgorithm as ga
 
 T0 = [0, 0, 0]
@@ -27,13 +29,13 @@ def f(t3):
 
 def get_coord(x, y, z, opts=None):
     algorithm_param = {'max_num_iteration': None,
-                       'population_size': 200,
+                       'population_size': 300,
                        'mutation_probability': 0.15,
                        'elit_ratio': 0.01,
                        'crossover_probability': 0.5,
                        'parents_portion': 0.1,
                        'crossover_type': 'uniform',
-                       'max_iteration_without_improv': 200}
+                       'max_iteration_without_improv': 120}
 
     if opts:
         algorithm_param.update(opts)
@@ -45,7 +47,14 @@ def get_coord(x, y, z, opts=None):
                algorithm_parameters=algorithm_param)
 
     model.run()
-    return model.best_variable
+
+    aux = model.best_variable
+    if f(model.best_variable) > 0:
+        model.run()
+        if f(model.best_variable) == 0:
+            return model.best_variable
+        aux = (aux + model.best_variable) / 2
+    return aux
 
 
 def random_try():
@@ -59,11 +68,46 @@ def random_try():
     t2 = calc_dist(d3, T2) / .34 + random_time
 
     coord = get_coord([0, 1000], [0, 1000], [0, 100])
-    print('\n')
-    print(coord)
-    print(d3)
-    print(f(coord))
-    return calc_dist(d3, coord)
+    return d3
 
 
-random_try()
+def generate_graph(T3):
+    df = pd.DataFrame(np.array([T0, T1, T2, T3]), columns=['x', 'y', 'z'])
+    colors = ['blue', 'blue', 'blue', 'red']
+    df_lines = pd.DataFrame(np.array([T0, T3, T1, T3, T2, T3]), columns=['x', 'y', 'z'])
+
+    fig = go.Figure(data=[
+        go.Scatter3d(
+            x=df['x'],
+            y=df['y'],
+            z=df['z'],
+            text=['T0', 'T1', 'T2', 'Ponto Calculado'],
+            mode='markers',
+            name='Torres',
+            marker=dict(
+                sizemode='diameter',
+                size=[20, 20, 20, 20],
+                color=colors,
+            )),
+        go.Scatter3d(
+            x=df_lines['x'],
+            y=df_lines['y'],
+            z=df_lines['z'],
+            mode='lines',
+            name='Linhas de ligação',
+            marker=dict(
+                color='#b6ff63'
+            )),
+    ])
+
+    fig.update_layout(width=800, height=800,
+                      scene=dict(xaxis=dict(title='Coordenada X', titlefont_color='white'),
+                                 yaxis=dict(title='Coordenada Y', titlefont_color='white'),
+                                 zaxis=dict(title='Coordenada Z', titlefont_color='white'),
+                                 bgcolor='black')
+                      )
+    fig.show()
+    fig.write_html('graph.html')
+
+
+generate_graph(random_try())
