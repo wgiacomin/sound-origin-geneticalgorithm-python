@@ -19,6 +19,7 @@ def calc_dist(p1, p2):
 
 
 def f(t3):
+    global t0, t1, t2
     t3_t1 = calc_dist(t3, T1) / .34
     t3_t2 = calc_dist(t3, T2) / .34
     t3_t0 = calc_dist(t3, T0) / .34
@@ -68,7 +69,7 @@ def random_try():
     t2 = calc_dist(d3, T2) / .34 + random_time
 
     coord = get_coord([0, 1000], [0, 1000], [0, 100])
-    return d3
+    return coord
 
 
 def generate_graph(T3):
@@ -100,14 +101,20 @@ def generate_graph(T3):
             )),
     ])
 
-    fig.update_layout(width=800, height=800,
-                      scene=dict(xaxis=dict(title='Coordenada X', titlefont_color='white'),
-                                 yaxis=dict(title='Coordenada Y', titlefont_color='white'),
-                                 zaxis=dict(title='Coordenada Z', titlefont_color='white'),
-                                 bgcolor='black')
+    fig.update_layout(width=600, height=600,
+                      scene=dict(xaxis=dict(title='Coordenada X', titlefont_color='black'),
+                                 yaxis=dict(title='Coordenada Y', titlefont_color='black'),
+                                 zaxis=dict(title='Coordenada Z', titlefont_color='black'),
+                                 bgcolor='#f4f4f4')
                       )
-    fig.show()
-    fig.write_html('graph.html')
+    # fig.show()
+    fig.write_html('templates/graph.html', include_plotlyjs='cdn')
 
 
-generate_graph(random_try())
+def calc(z, x, y):
+    global t0, t1, t2
+    t0 = z
+    t1 = x
+    t2 = y
+    m = 1000
+    generate_graph(get_coord([-m, m], [-m, m], [-m, m]))
