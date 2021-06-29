@@ -10,11 +10,15 @@ def home():
     if request.method == 'POST':
         if request.form.get('teste'):
             ga.generate_graph(ga.random_try())
-        t0 = int(request.form.get('t1'))
-        t1 = int(request.form.get('t2'))
-        t2 = int(request.form.get('t3'))
-        if t1 * t2 * t0:
-            ga.calc(t0, t1, t2)
+        else:
+            t0 = request.form.get('t1')
+            t1 = request.form.get('t2')
+            t2 = request.form.get('t3')
+            if t0 and t1 and t2:
+                t0 = int(t0)
+                t1 = int(t1)
+                t2 = int(t2)
+                ga.calc(t0, t1, t2)
 
     return render_template('index.html')
 
