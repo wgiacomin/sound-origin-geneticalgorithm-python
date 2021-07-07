@@ -6,8 +6,8 @@
 <body>
 <div class="container-fluid"  style="margin-top: 20px">
     <div class="row">
-        <div class="col-4">
-            <div style="position:fixed">
+        <div class="col-3">
+            <div class="menu" style="position:fixed; margin-top: 10%">
                 <form action="/" method="POST">
                     <div class="form-group">
                         <div class="input-group mb-2">
@@ -41,10 +41,34 @@
                     <input name="teste" value="1" hidden>
                     <button type="submit" class="btn btn-secondary" >Testar Algoritmo</button>
                 </form>
+
+                <br>
+
+                <form action="/" method="PUT">
+                	<label style="font-family: sans-serif;">Novas Coordenadas: Ex.: 100/-500/50</label>
+                	<div class="form-group">
+                        <div class="input-group mb-4">
+                            <input type="text" class="form-control" id="c1" name="c1" placeholder="Ponto 1">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="input-group mb-4">
+                            <input type="text" class="form-control" id="c2" name="c2" placeholder="Ponto 2">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="input-group mb-4">
+                            <input type="text" class="form-control" id="c3" name="c3" placeholder="Ponto 3">
+                        </div>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Inserir novas coordenadas</button>
+                </form>
+                <br> 
+
             </div>
         </div>
 
-        <div class="col-2">
+        <div>
             {%include 'graph.html' %}
         </div>
     </div>
