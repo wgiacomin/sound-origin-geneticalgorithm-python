@@ -14,6 +14,8 @@ class Solve:
         self.t0 = t0
         self.t1 = t1
         self.t2 = t2
+        self.T3 = None
+        self.random = None
 
     @staticmethod
     def calc_dist(p1, p2):
@@ -52,14 +54,16 @@ class Solve:
         if self.f(model.best_variable) > 0:
             model.run()
             if self.f(model.best_variable) == 0:
+                self.T3 = aux
                 return model.best_variable
             aux = (aux + model.best_variable) / 2
+        self.T3 = aux
         return aux
 
     def random_try(self):
         d3 = [random.randint(0, 1000) for _ in range(2)]
         d3.append(random.randint(0, 100))
-
+        self.random = d3
         random_time = random.randint(0, 110)
         self.t0 = self.calc_dist(d3, self.T0) / .34 + random_time
         self.t1 = self.calc_dist(d3, self.T1) / .34 + random_time
@@ -170,3 +174,15 @@ class Solve:
     @property
     def get_t2(self):
         return f"{self.t2:.2f}"
+
+    @property
+    def get_random(self):
+        if self.random is not None:
+            return f"{self.random[0]},{self.random[1]},{self.random[2]}"
+        return ""
+
+    @property
+    def get_delta(self):
+        if self.T3 is not None:
+            return self.f(self.T3)
+        return ""
