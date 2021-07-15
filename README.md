@@ -12,22 +12,32 @@ O SRSS também conta com algoritmo para a identificação de sinais de interesse
 
 construir uma solução, em um algoritmo genético (AG), para facilitar a identificação da origem de  um  estampido  no  sistema  de  referência  utilizado,  a  partir  dos  tempos  observados  nos sensores. 
 
-### O trabalho 
-
-​	a) A solução deve ser construída na plataforma e linguagem escolhida pela equipe, desde que os conceitos de AG sejam utilizados de forma correta e justificada no relatório. 
-
-​	b) O programa deve usar algoritmos genéticos para propor soluções coerentes. 
-
-​	c) O Trabalho pode ser realizado em equipes de até três pessoas. 
-
-​	d) O procedimento a ser usado para gerar e utilizar o gráfico de apresentação do resultado é parte integrante do trabalho e deve compor a avaliação; 
-
-​	e) A equipe deve construir o seu ambiente de teste e um problema análogo, diferente (outras coordenadas para os sensores), pode ser proposto no dia da avaliação; 
-
-​	f) Um  relatório  técnico  apresentando  a  solução  deve  ser  entregue  ao  final  da disciplina. 
-
-​	g) A  avaliação  levará  em  conta  a  qualidade  da  solução,  a  programação  e  a apresentação dos resultados (relatório e apresentação oral). 
 
 
+## Função Objetivo
 
-Trabalho apresentado como avaliação do tópico de Algoritmos genéticos na disciplina de Inteligência computacional aplicada II DS804 TADS – UFPR, Prof. Roberto Tadeu Raittz, Dr.
+A função objetivo foi determinada utilizando-se como base a distância euclidiana sendo alimentada por um ponto Tx contendo 3 coordenadas do espaço, conforme a imagem abaixo.
+
+![img](./images/image (1).png)
+
+Após calculada a distância entre o ponto alimentado e as três torres, a distância dada em metros é convertida em tempo na unidade de milissegundos. A partir desse dado, é então calculado o custo da função com base em um ponto relativo. Por exemplo, na imagem abaixo, o custo da função é o tempo relativo entre T0 e Tx usando-se como base o ponto T2. Assim tempo que o custo é a diferença entre os tempos calculados dos dois pontos menos a diferença dos tempos informados entre os dois pontos.
+
+![img](./images/image (2).png)
+
+Esse raciocínio é generalizado para os demais pontos e então penalizado para se promover uma curva mais acentuada e melhorar a conversão de pontos mais distantes. Em notações matemáticas, a distância entre 2 pontos se dará como:
+
+![img](./images/image (3).png)
+
+o cálculo da função do desvio é então dado como:
+
+![img](./images/image (4).png)
+
+sendo,
+
+​     k, o tempo informado
+
+​     t, o tempo calculado
+
+​     x, o ponto informado como argumento na função
+
+​     T, uma coordenada de 3 dimensões
