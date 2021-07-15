@@ -18,19 +18,19 @@ construir uma solução, em um algoritmo genético (AG), para facilitar a identi
 
 A função objetivo foi determinada utilizando-se como base a distância euclidiana sendo alimentada por um ponto Tx contendo 3 coordenadas do espaço, conforme a imagem abaixo.
 
-![img](./images/image (1).png)
+![img](https://github.com/wgiacomin/geneticalgorithm-python/blob/main/images/image%20(1).png)
 
 Após calculada a distância entre o ponto alimentado e as três torres, a distância dada em metros é convertida em tempo na unidade de milissegundos. A partir desse dado, é então calculado o custo da função com base em um ponto relativo. Por exemplo, na imagem abaixo, o custo da função é o tempo relativo entre T0 e Tx usando-se como base o ponto T2. Assim tempo que o custo é a diferença entre os tempos calculados dos dois pontos menos a diferença dos tempos informados entre os dois pontos.
 
-![img](./images/image (2).png)
+![img](https://github.com/wgiacomin/geneticalgorithm-python/blob/main/images/image%20(2).png)
 
 Esse raciocínio é generalizado para os demais pontos e então penalizado para se promover uma curva mais acentuada e melhorar a conversão de pontos mais distantes. Em notações matemáticas, a distância entre 2 pontos se dará como:
 
-![img](./images/image (3).png)
+![img](https://github.com/wgiacomin/geneticalgorithm-python/blob/main/images/image%20(3).png)
 
 o cálculo da função do desvio é então dado como:
 
-![img](./images/image (4).png)
+![img](https://github.com/wgiacomin/geneticalgorithm-python/blob/main/images/image%20(4).png)
 
 sendo,
 
