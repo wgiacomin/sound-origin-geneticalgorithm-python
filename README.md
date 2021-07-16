@@ -42,4 +42,4 @@ sendo,
 
 ​     T, uma coordenada de 3 dimensões
 
-Em poucas palavras, as diferenças entre o tempo informado e o tempo calculado deve ser zero para todos os pontos.
+Em poucas palavras, as diferenças entre o tempo informado e o tempo calculado usando um ponto como referência, deve ser zero para todos os pares de pontos.
