@@ -41,3 +41,5 @@ sendo,
 ​     x, o ponto informado como argumento na função
 
 ​     T, uma coordenada de 3 dimensões
+
+Em poucas palavras, as diferenças entre o tempo informado e o tempo calculado entre os pontos deve ser zero.
