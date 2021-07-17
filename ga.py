@@ -108,7 +108,7 @@ class Solve:
                                      bgcolor='#f4f4f4')
                           )
         # fig.show()
-        fig.write_html(r'D:\Codigos\Algoritmos_Geneticos\T01\templates\graph.html', include_plotlyjs='cdn')
+        fig.write_html(r'.\templates\graph.html', include_plotlyjs='cdn')
 
     def generate_graph_clean(self):
         df = pd.DataFrame(np.array([self.T0, self.T1, self.T2]), columns=['x', 'y', 'z'])
@@ -137,7 +137,7 @@ class Solve:
                                      bgcolor='#f4f4f4')
                           )
         # fig.show()
-        fig.write_html(r'D:\Codigos\Algoritmos_Geneticos\T01\templates\graph.html', include_plotlyjs='cdn')
+        fig.write_html(r'.\templates\graph.html', include_plotlyjs='cdn')
 
     def set_coord(self, T0, T1, T2):
         self.T0 = T0
